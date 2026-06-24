@@ -1,0 +1,421 @@
+/* =====================================================
+   CRUD FARMÁCIA VAV - Estilos Globais
+   =====================================================
+   Estratégia: MOBILE FIRST
+   - As regras "base" (fora de media query) valem para
+     telas pequenas (celular).
+   - O @media (min-width: 768px) no final do arquivo
+     ajusta/melhora o layout para telas de desktop.
+
+   Paleta de cores: REGRA 60-30-10
+   - 60% Cor Dominante  -> bege muito claro (fundo quente e neutro)
+   - 30% Cor Secundária -> vinho (elegante, menus e cabeçalho)
+   - 10% Cor de Destaque -> dourado (ações) e vermelho-escuro (alertas)
+   ===================================================== */
+
+/* -----------------------------------------------------
+   1. VARIÁVEIS DE COR (CSS Custom Properties)
+   Centralizar as cores aqui facilita a manutenção e
+   deixa visível onde a regra 60-30-10 é aplicada.
+   ----------------------------------------------------- */
+:root {
+    /* 60% - Cor Dominante (fundo bege quente e neutro, áreas neutras) */
+    --cor-fundo: #faf7f2;
+    --cor-fundo-card: #fffdf9;
+    --cor-texto: #2c1a1a;
+    --cor-texto-claro: #7a6060;
+    --cor-borda: #e8ddd5;
+
+    /* 30% - Cor Secundária (vinho: elegante, menus e cabeçalho) */
+    --cor-secundaria: #7b2d42;
+    --cor-secundaria-escura: #5c1f30;
+    --cor-secundaria-texto: #fdf6ee;
+
+    /* 10% - Cor de Destaque (dourado para ações, vermelho-escuro para alertas) */
+    --cor-destaque: #c9933a;
+    --cor-destaque-escura: #a87428;
+    --cor-alerta: #a61c2e;
+    --cor-alerta-escura: #7d1220;
+
+    /* Espaçamentos padronizados */
+    --espaco-pequeno: 8px;
+    --espaco-medio: 16px;
+    --espaco-grande: 24px;
+
+    /* Bordas arredondadas */
+    --borda-raio: 8px;
+}
+
+/* -----------------------------------------------------
+   2. RESET BÁSICO E ESTILOS GLOBAIS
+   ----------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    background-color: var(--cor-fundo); /* 60% - fundo dominante */
+    color: var(--cor-texto);
+    line-height: 1.5;
+    /* Garante que o rodapé fique no final mesmo em páginas curtas */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* -----------------------------------------------------
+   3. CABEÇALHO E MENU (30% - cor secundária vinho)
+   ----------------------------------------------------- */
+.cabecalho {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-secundaria-texto);
+    padding: var(--espaco-medio);
+}
+
+.cabecalho-container {
+    display: flex;
+    flex-direction: column; /* Mobile: logo acima do menu */
+    align-items: center;
+    gap: var(--espaco-medio);
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.menu-lista {
+    display: flex;
+    flex-direction: column; /* Mobile: itens do menu em coluna */
+    width: 100%;
+    gap: var(--espaco-pequeno);
+}
+
+.menu-link {
+    display: block;
+    text-align: center;
+    padding: var(--espaco-pequeno) var(--espaco-medio);
+    border-radius: var(--borda-raio);
+    background-color: var(--cor-secundaria-escura);
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.menu-link:hover,
+.menu-link:focus {
+    background-color: var(--cor-destaque); /* destaque sutil no hover */
+}
+
+/* Classe sugerida para destacar a página atual no menu */
+.menu-ativo {
+    background-color: var(--cor-destaque);
+}
+
+/* -----------------------------------------------------
+   4. CONTEÚDO PRINCIPAL
+   ----------------------------------------------------- */
+.conteudo-principal {
+    flex: 1; /* Empurra o rodapé para baixo quando o conteúdo é curto */
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: var(--espaco-grande) var(--espaco-medio);
+}
+
+.titulo-pagina {
+    font-size: 1.4rem;
+    margin-bottom: var(--espaco-grande);
+    color: var(--cor-texto);
+    border-left: 4px solid var(--cor-secundaria);
+    padding-left: var(--espaco-pequeno);
+}
+
+/* -----------------------------------------------------
+   5. BOTÕES (10% - cor de destaque)
+   ----------------------------------------------------- */
+.botao {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--borda-raio);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.botao:active {
+    transform: scale(0.97);
+}
+
+/* Botão principal de ação (cadastrar, salvar) - dourado */
+.botao-acao {
+    background-color: var(--cor-destaque);
+    color: #ffffff;
+}
+
+.botao-acao:hover {
+    background-color: var(--cor-destaque-escura);
+}
+
+/* Botão de edição - usa a cor secundária para não competir com o destaque */
+.botao-editar {
+    background-color: var(--cor-secundaria);
+    color: #ffffff;
+}
+
+.botao-editar:hover {
+    background-color: var(--cor-secundaria-escura);
+}
+
+/* Botão de exclusão/alerta - vermelho, reservado para ações destrutivas */
+.botao-excluir {
+    background-color: var(--cor-alerta);
+    color: #ffffff;
+}
+
+.botao-excluir:hover {
+    background-color: var(--cor-alerta-escura);
+}
+
+/* Grupo de botões dentro de um card/linha de tabela */
+.acoes {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-pequeno);
+}
+
+/* -----------------------------------------------------
+   6. ALERTAS / MENSAGENS DE FEEDBACK (10% - destaque)
+   ----------------------------------------------------- */
+.alerta {
+    padding: var(--espaco-medio);
+    border-radius: var(--borda-raio);
+    margin-bottom: var(--espaco-medio);
+    font-size: 0.9rem;
+    border-left: 4px solid transparent;
+}
+
+.alerta-sucesso {
+    background-color: #eafaf1;
+    border-left-color: #2ecc71;
+    color: #1e7e44;
+}
+
+.alerta-erro {
+    background-color: #fdecea;
+    border-left-color: var(--cor-alerta);
+    color: var(--cor-alerta-escura);
+}
+
+/* -----------------------------------------------------
+   7. FORMULÁRIOS (cadastro.php e editar.php)
+   ----------------------------------------------------- */
+.formulario {
+    background-color: var(--cor-fundo-card);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--borda-raio);
+    padding: var(--espaco-grande);
+    max-width: 500px;
+}
+
+.campo {
+    margin-bottom: var(--espaco-medio);
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.campo input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--borda-raio);
+    font-size: 1rem;
+}
+
+.campo input:focus {
+    outline: none;
+    border-color: var(--cor-secundaria);
+}
+
+/* -----------------------------------------------------
+   8. TABELA RESPONSIVA -> VIRA "CARD" NO MOBILE
+   -----------------------------------------------------
+   Estratégia: no mobile, escondemos o cabeçalho da
+   tabela (<thead>) e transformamos cada <tr> em um
+   card, exibindo cada <td> como uma linha com o nome
+   da coluna (via atributo data-label + ::before).
+
+   IMPORTANTE: ao montar o index.php, cada <td> precisa
+   ter o atributo data-label="Nome da Coluna", exemplo:
+   <td data-label="Nome">Paracetamol</td>
+   ----------------------------------------------------- */
+.tabela-produtos {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* No mobile, o cabeçalho da tabela é escondido visualmente,
+   mas continua acessível para leitores de tela */
+.tabela-produtos thead {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+}
+
+.tabela-produtos tbody tr {
+    display: block;
+    background-color: var(--cor-fundo-card);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--borda-raio);
+    margin-bottom: var(--espaco-medio);
+    padding: var(--espaco-medio);
+}
+
+.tabela-produtos tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--cor-borda);
+    text-align: right;
+}
+
+.tabela-produtos tbody td:last-child {
+    border-bottom: none;
+}
+
+/* Exibe o nome da coluna antes do valor, usando o data-label */
+.tabela-produtos tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--cor-texto-claro);
+    text-align: left;
+    margin-right: var(--espaco-medio);
+}
+
+/* =====================================================
+   MEDIA QUERY - AJUSTES PARA DESKTOP (telas >= 768px)
+   Mobile First: aqui apenas REFINAMOS o que já existe,
+   nunca recriamos o layout do zero.
+   ===================================================== */
+@media (min-width: 768px) {
+
+    /* Cabeçalho: logo e menu lado a lado */
+    .cabecalho-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .menu-lista {
+        flex-direction: row;
+        width: auto;
+    }
+
+    .titulo-pagina {
+        font-size: 1.8rem;
+    }
+
+    /* Botões de ação lado a lado em telas maiores */
+    .acoes {
+        flex-direction: row;
+    }
+
+    /* -------------------------------------------------
+       TABELA VOLTA A SER TABELA TRADICIONAL NO DESKTOP
+       ------------------------------------------------- */
+    .tabela-produtos thead {
+        position: static;
+        left: auto;
+        top: auto;
+    }
+
+    .tabela-produtos {
+        background-color: var(--cor-fundo-card);
+        border: 1px solid var(--cor-borda);
+        border-radius: var(--borda-raio);
+        overflow: hidden;
+    }
+
+    .tabela-produtos thead tr {
+        background-color: var(--cor-secundaria);
+        color: var(--cor-secundaria-texto);
+    }
+
+    .tabela-produtos th {
+        text-align: left;
+        padding: 12px var(--espaco-medio);
+        font-weight: 600;
+    }
+
+    .tabela-produtos tbody tr {
+        display: table-row; /* desfaz o "card" do mobile */
+        border: none;
+        border-bottom: 1px solid var(--cor-borda);
+        margin-bottom: 0;
+        padding: 0;
+    }
+
+    .tabela-produtos tbody tr:last-child {
+        border-bottom: none;
+    }
+
+    .tabela-produtos tbody tr:hover {
+        background-color: #f5ede8; /* leve destaque ao passar o mouse */
+    }
+
+    .tabela-produtos tbody td {
+        display: table-cell; /* desfaz o flex do mobile */
+        text-align: left;
+        padding: 12px var(--espaco-medio);
+        border-bottom: none;
+    }
+
+    /* Esconde o "rótulo" da coluna (data-label) no desktop,
+       já que o <thead> volta a aparecer normalmente */
+    .tabela-produtos tbody td::before {
+        content: none;
+    }
+
+    .acoes {
+        justify-content: flex-start;
+    }
+}
+
+/* -----------------------------------------------------
+   9. RODAPÉ
+   ----------------------------------------------------- */
+.rodape {
+    background-color: var(--cor-secundaria-escura);
+    color: var(--cor-secundaria-texto);
+    text-align: center;
+    padding: var(--espaco-medio);
+    font-size: 0.85rem;
+    margin-top: var(--espaco-grande);
+}
