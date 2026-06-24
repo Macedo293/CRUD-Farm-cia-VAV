@@ -1,0 +1,51 @@
+/* -----------------------------------------------------
+   1. VARIÁVEIS DE CONFIGURAÇÃO (CSS Variables)
+   ----------------------------------------------------- */
+:root {
+    /* 60% - Base Visual */
+    --cor-fundo: #f4f6f7;
+    --cor-fundo-card: #ffffff;
+    --cor-texto: #2d3436;
+    --cor-texto-claro: #636e72;
+    --cor-borda: #dfe6e9;
+
+    /* 30% - Identidade da Marca */
+    --cor-secundaria: #1f8a8c;
+    --cor-secundaria-escura: #166567;
+    --cor-secundaria-texto: #ffffff;
+
+    /* 10% - Pontos de Atenção */
+    --cor-destaque: #ff7b39;
+    --cor-destaque-escura: #e6651f;
+    --cor-alerta: #e63946;
+    --cor-alerta-escura: #c5283a;
+
+    /* Espaçamentos Padrão */
+    --espaco-pequeno: 8px;
+    --espaco-medio: 16px;
+    --espaco-grande: 24px;
+
+    /* Arredondamento de Cantos */
+    --borda-raio: 8px;
+
+    /* MELHORIA: Transição suave para hovers de botões */
+    --transicao: all 0.2s ease-in-out;
+}
+
+/* -----------------------------------------------------
+   2. RESET DE ESTILOS E REGRAS GLOBAIS
+   ----------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;                 /* Completado */
+    box-sizing: border-box;     /* MELHORIA: Evita quebra de layout no mobile */
+}
+
+/* MELHORIA: Configuração base do corpo da página */
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; /* Fonte moderna e limpa */
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased; /* Deixa as letras mais nítidas em telas HD */
+}
